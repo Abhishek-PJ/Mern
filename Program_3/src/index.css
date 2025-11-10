@@ -1,18 +1,190 @@
-:root {
-  --bg: #f5f7fb;
+/* src/index.css
+   Simple, attractive styling for the resume app.
+   Easy variables at the top — tweak colors/spacing as needed.
+*/
+
+:root{
+  /* color palette */
+  --bg: #44536675;
   --card: #ffffff;
-  --muted: #5b6b78;
-  --accent: #0ea5a4;
+  --muted: #6b7b86;
+  --text: #0f1720;
+  --accent: #06b6d4;
+  --accent-2: #7c3aed;
+
+  /* spacing + sizes */
+  --gap: 18px;
+  --radius: 12px;
+  --shadow: 0 8px 28px rgba(16, 32, 40, 0.08);
+  --container-w: 980px;
 }
+
+/* reset-ish */
 * { box-sizing: border-box; }
-body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: var(--bg); color: #102027; }
-.app-root { padding: 20px; display:flex; justify-content:center; }
-.resume { width:900px; max-width:95vw; display:grid; grid-template-columns:280px 1fr; gap:18px; }
-.card { background:var(--card); padding:14px; border-radius:8px; box-shadow:0 6px 18px rgba(16,32,40,0.06); }
-.left .card.person { text-align:center; }
-.avatar { width:84px; height:84px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#7c3aed); color:white; font-weight:700; display:inline-flex; align-items:center; justify-content:center; font-size:26px; margin:8px 0; }
-.header .title { margin:0; font-size:24px; }
-.header .subtitle { margin:4px 0; color:var(--muted); }
-.right .card { margin-bottom:12px; }
-ul { padding-left:18px; margin:6px 0; }
-@media (max-width:800px) { .resume { grid-template-columns:1fr } .left { order:2 } }
+html,body,#root { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, var(--bg), #e9f0f6);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+}
+
+/* layout */
+.app-root {
+  padding: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--gap);
+}
+
+.resume {
+  width: var(--container-w);
+  max-width: 96vw;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--gap);
+  align-items: start;
+}
+
+/* card style used throughout */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(15, 23, 32, 0.04);
+}
+
+/* left column (profile) */
+.left .card.person {
+  text-align: center;
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 14px;
+  margin: 0 auto 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: white;
+  font-size: 28px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 6px 18px rgba(12, 20, 30, 0.12);
+}
+
+.person h2 {
+  margin: 8px 0 6px;
+  font-size: 20px;
+  letter-spacing: -0.2px;
+}
+.person .meta {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* info rows inside profile */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted);
+  padding: 8px 0;
+  border-top: 1px dashed rgba(15,23,32,0.03);
+}
+
+/* right column */
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 12px;
+}
+.title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+ align-items: center;
+}
+.subtitle {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* section card */
+.section-title {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+/* lists */
+.card ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+.card li {
+  margin: 8px 0;
+  color: #243238;
+}
+
+/* education & experience styling */
+.job {
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(15,23,32,0.03);
+}
+.job:last-child { border-bottom: none; }
+
+.job-title {
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+.job-sub { color: var(--muted); font-size: 13px; }
+
+/* skill pills */
+.skills { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.skill-pill {
+  padding: 6px 10px;
+  background: rgba(6,182,212,0.08);
+  color: var(--accent);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  border: 1px solid rgba(6,182,212,0.12);
+}
+
+/* responsiveness */
+@media (max-width: 920px) {
+  .resume { grid-template-columns: 1fr; }
+  .left { order: 2; }
+}
+
+/* small utilities (easy tweaks) */
+.text-muted { color: var(--muted); font-size: 13px; }
+.center { text-align: center; }
+.small { font-size: 13px; color: var(--muted); }
