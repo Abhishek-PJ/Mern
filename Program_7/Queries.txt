@@ -1,0 +1,50 @@
+Query 1: Salary Range
+Find all employees whose salary is greater than $90,000 but less than or equal to $120,000.
+Query:
+db.employees.find({
+  salary: { $gt: 90000, $lte: 120000 }
+});
+
+Query 2: Department Filter Using $in
+Find all employees who work in either the HR department or the Sales department.
+Query:
+db.employees.find({
+  department: { $in: ["HR", "Sales"] }
+});
+
+Query 3: Status Not Equal Using $ne
+Find all employees whose status is not equal to "On Leave".
+Query:
+db.employees.find({
+  status: { $ne: "On Leave" }
+});
+
+Query 4: Implicit AND Condition
+Find all employees from the Engineering department who have a performance score of 4.5 or higher.
+Query:
+db.employees.find({
+  department: "Engineering",
+  performance_score: { $gte: 4.5 }
+});
+
+Query 5: OR Condition Using $or
+Find all employees who either work in the HR department or have a salary greater than $100,000.
+Query:
+db.employees.find({
+  $or: [
+    { department: "HR" },
+    { salary: { $gt: 100000 } }
+  ]
+});
+
+Query 6: Combined Complex Query
+Find all employees who satisfy all of the following:
+1. Status = "Active"
+2. Department is Engineering or Sales
+3. Hired before January 1, 2024
+Query:
+db.employees.find({
+  status: "Active",
+  department: { $in: ["Engineering", "Sales"] },
+  hire_date: { $lt: new Date("2024-01-01") }
+});
